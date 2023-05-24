@@ -1,16 +1,11 @@
 from tkinter import *
 import random
 
-# Set up the window
-window = Tk()
-window.title("Application")
-window.geometry("420x210")
-
 # Set up the constant lists
 
-majors_sharp = ["C", "G", "D", "A", "E", "B", "F sharp", "C sharp"]
-majors_flat = ["F", "B flat", "E flat", "A flat", "D flat", "G flat", "C flat"]
-majors = [majors_flat, majors_sharp]
+MAJOR_SHARP = ["C", "G", "D", "A", "E", "B", "F sharp", "C sharp"]
+MAJOR_FLAT = ["F", "B flat", "E flat", "A flat", "D flat", "G flat", "C flat"]
+MAJORS = [MAJOR_FLAT, MAJOR_SHARP]
 
 minors_sharp = ["A", "E", "B", "F sharp", "C sharp", "G sharp", "B sharp"]
 minors_flat = ["B", "G", "C", "F", "B flat", "D flat", "A flat"]
@@ -31,6 +26,11 @@ test_minor = [test_minor_arpeggio, test_minor_scale, test_minor_octaves]
 
 
 # Function to get a random result
+def window():
+    window = Tk()
+    window.title("Application")
+    window.geometry("420x210")
+
 def choose_majororminor():
     thechoices = ["major", "minor"]
     choice = random.choice(thechoices)
@@ -39,7 +39,7 @@ def choose_majororminor():
 
 def choose_note(major_or_minor):
     if major_or_minor == "major":
-        f_or_s = random.choice(majors)
+        f_or_s = random.choice(MAJORS)
         note = random.choice(f_or_s)
         return (note)
     else:
@@ -60,6 +60,14 @@ def choose_tests(major_or_minor):
         the_test = random.choice(whichtest)
         return (the_test)
 
+def click():
+    major_minor = choose_majororminor()
+    note = choose_note(choose_majororminor())
+    test = choose_tests(choose_majororminor())
+    to_print = str("Perform from " + str(major_minor) + ", " + str(note) + " in " + str(test))
+    label.config(text=to_print)
+    print(to_print)
+
 
 major_minor = choose_majororminor()
 note = choose_note(choose_majororminor())
@@ -70,15 +78,6 @@ print(test)
 print("Perform from " + str(major_minor) + "," + str(note) + " in " + str(test))
 
 to_print = "Perform from " + str(major_minor) + "," + str(note) + " in " + str(test)
-
-def click():
-    major_minor = choose_majororminor()
-    note = choose_note(choose_majororminor())
-    test = choose_tests(choose_majororminor())
-    to_print = str("Perform from " + str(major_minor) + ", " + str(note) + " in " + str(test))
-    label.config(text=to_print)
-    print(to_print)
-
 
 # Button
 button = Button(window, text="to reset the skill", command=click)
