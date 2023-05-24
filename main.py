@@ -7,9 +7,9 @@ MAJOR_SHARP = ["C", "G", "D", "A", "E", "B", "F sharp", "C sharp"]
 MAJOR_FLAT = ["F", "B flat", "E flat", "A flat", "D flat", "G flat", "C flat"]
 MAJORS = [MAJOR_FLAT, MAJOR_SHARP]
 
-minors_sharp = ["A", "E", "B", "F sharp", "C sharp", "G sharp", "B sharp"]
-minors_flat = ["B", "G", "C", "F", "B flat", "D flat", "A flat"]
-minors = [minors_flat, minors_sharp]
+MINOR_SHARP = ["A", "E", "B", "F sharp", "C sharp", "G sharp", "B sharp"]
+MINOR_FLAT = ["B", "G", "C", "F", "B flat", "D flat", "A flat"]
+MINORS = [MINOR_FLAT, MINOR_SHARP]
 
 test_major_scale = ["major", "separated by a third", "separated by a sixth", "separated by a tenth",
                     "contrary motion", "chromatic scale", "octaves"]
@@ -43,7 +43,7 @@ def choose_note(major_or_minor):
         note = random.choice(f_or_s)
         return (note)
     else:
-        f_or_s = random.choice(minors)
+        f_or_s = random.choice(MINORS)
         note = random.choice(f_or_s)
         return (note)
 
