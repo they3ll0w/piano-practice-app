@@ -11,26 +11,21 @@ MINOR_SHARP = ["A", "E", "B", "F sharp", "C sharp", "G sharp", "B sharp"]
 MINOR_FLAT = ["B", "G", "C", "F", "B flat", "D flat", "A flat"]
 MINORS = [MINOR_FLAT, MINOR_SHARP]
 
-test_major_scale = ["major", "separated by a third", "separated by a sixth", "separated by a tenth",
+MAJOR_SCALES = ["major", "separated by a third", "separated by a sixth", "separated by a tenth",
                     "contrary motion", "chromatic scale", "octaves"]
-test_major_octaves = ["four notes", "dominant seven chords", "dominant seven seperated"]
-test_major_arpeggio = ["four note form " + str(random.randint(0, 2))
+MAJOR_OCTAVES = ["four notes", "dominant seven chords", "dominant seven seperated"]
+MAJOR_ARPEGGIO = ["four note form " + str(random.randint(0, 2))
     , "dominant seven" + str(random.randint(0, 3))]
-test_major = [test_major_arpeggio, test_major_octaves, test_major_scale]
+MAJOR_TESTS = [MAJOR_ARPEGGIO, MAJOR_OCTAVES, MAJOR_SCALES]
 
-test_minor_scale = ["harmonic", "melodic", "contrary motion"]
-test_minor_octaves = ["four notes", "diminished seven chords", "diminished seven separated"]
-test_minor_arpeggio = ["four note form inversion " + str(random.randint(0, 2))
+MINOR_SCALES = ["harmonic", "melodic", "contrary motion"]
+MINOR_OCTAVES = ["four notes", "diminished seven chords", "diminished seven separated"]
+MINOR_ARPEGGIO = ["four note form inversion " + str(random.randint(0, 2))
     , "diminished seven inversion " + str(random.randint(0, 3))]
-test_minor = [test_minor_arpeggio, test_minor_scale, test_minor_octaves]
+MINOR_TESTS = [MINOR_ARPEGGIO, MINOR_SCALES, MINOR_OCTAVES]
 
 
 # Function to get a random result
-def window():
-    window = Tk()
-    window.title("Application")
-    window.geometry("420x210")
-
 def choose_majororminor():
     thechoices = ["major", "minor"]
     choice = random.choice(thechoices)
@@ -50,13 +45,13 @@ def choose_note(major_or_minor):
 
 def choose_tests(major_or_minor):
     if major_or_minor == "major":
-        whichtest = random.choice(test_major)
+        whichtest = random.choice(MAJOR_TESTS)
         the_test = random.choice(whichtest)
         return (the_test)
 
     elif major_or_minor == "minor":
-        random.choice(test_minor)
-        whichtest = random.choice(test_minor)
+        random.choice(MINOR_TESTS)
+        whichtest = random.choice(MINOR_TESTS)
         the_test = random.choice(whichtest)
         return (the_test)
 
@@ -64,11 +59,13 @@ def click():
     major_minor = choose_majororminor()
     note = choose_note(choose_majororminor())
     test = choose_tests(choose_majororminor())
-    to_print = str("Perform from " + str(major_minor) + ", " + str(note) + " in " + str(test))
+    to_print = to_print = "Perform " + str(note) + " " + str(major_minor) + "," + " in " + str(test)
     label.config(text=to_print)
     print(to_print)
 
-
+window = Tk()
+window.title("Application")
+window.geometry("420x210")
 major_minor = choose_majororminor()
 note = choose_note(choose_majororminor())
 test = choose_tests(choose_majororminor())
@@ -77,7 +74,7 @@ print(note)
 print(test)
 print("Perform from " + str(major_minor) + "," + str(note) + " in " + str(test))
 
-to_print = "Perform from " + str(major_minor) + "," + str(note) + " in " + str(test)
+to_print = "Perform" + str(note) + str(major_minor) + "," + " in " + str(test)
 
 # Button
 button = Button(window, text="to reset the skill", command=click)
