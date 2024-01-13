@@ -1,6 +1,22 @@
 from tkinter import *
 import random
 
+def inversion(inv: int):
+
+    if inv == 0:
+        return "first inversion"
+    
+    if inv == 1:
+        return "second inversion"
+    
+    if inv == 2:
+        return "thrid inversion"
+    
+    else:
+        return "fourth inversion"
+    
+
+
 # Constant lists
 
 MAJOR_SHARP = ["C", "G", "D", "A", "E", "B", "F sharp", "C sharp"]
@@ -14,14 +30,14 @@ MINORS = [MINOR_FLAT, MINOR_SHARP]
 MAJOR_SCALES = ["major", "separated by a third", "separated by a sixth", "separated by a tenth",
                     "contrary motion", "chromatic scale", "octaves"]
 MAJOR_OCTAVES = ["four keys", "dominant seven chords", "dominant seven seperated"]
-MAJOR_ARPEGGIO = ["four key form " + str(random.randint(0, 2))
-    , "dominant seven" + str(random.randint(0, 3))]
+MAJOR_ARPEGGIO = ["four key form " + inversion(random.randint(0, 2))
+    , "dominant seven " + inversion(random.randint(0, 3))]
 MAJOR_TESTS = [MAJOR_ARPEGGIO, MAJOR_OCTAVES, MAJOR_SCALES]
 
 MINOR_SCALES = ["harmonic", "melodic", "contrary motion"]
 MINOR_OCTAVES = ["four keys", "diminished seven chords", "diminished seven separated"]
-MINOR_ARPEGGIO = ["four key form inversion " + str(random.randint(0, 2))
-    , "diminished seven inversion " + str(random.randint(0, 3))]
+MINOR_ARPEGGIO = ["four key form inversion " + inversion(random.randint(0, 2))
+    , "diminished seven inversion " + inversion(random.randint(0, 3))]
 MINOR_TESTS = [MINOR_ARPEGGIO, MINOR_SCALES, MINOR_OCTAVES]
 
 MAJOR_MINOR = ["major", "minor"]
@@ -29,12 +45,11 @@ MAJOR_MINOR = ["major", "minor"]
 # Functions
 
 # choose_majororminor() returns randomly one of "major" or "minor"
-def choose_majororminor():
+def choose_majororminor() -> StringVar:
     choice = random.choice(MAJOR_MINOR)
     return choice
 
-
-def choose_key(major_or_minor):
+def choose_key(major_or_minor: StringVar) -> StringVar:
     if major_or_minor == "major":
         f_or_s = random.choice(MAJORS)
         key = random.choice(f_or_s)
@@ -44,8 +59,7 @@ def choose_key(major_or_minor):
         key = random.choice(f_or_s)
         return (key)
 
-
-def choose_tests(major_or_minor):
+def choose_tests(major_or_minor: StringVar) -> StringVar:
     test_list = MINOR_TESTS
     if major_or_minor == "major":
         test_list = MAJOR_TESTS
@@ -60,14 +74,13 @@ def click():
     to_print = to_print = "Perform " + str(key) + " " + str(major_minor) + "," + " in " + str(test)
     label.config(text=to_print)
 
-
 window = Tk()
 window.title("Application")
 window.geometry("420x210")
 major_minor = choose_majororminor()
 key = choose_key(choose_majororminor())
 test = choose_tests(choose_majororminor())
-to_print = to_print = "Perform " + str(key) + " " + str(major_minor) + "," + " in " + str(test)
+to_print = "Perform " + str(key) + " " + str(major_minor) + "," + " in " + str(test)
 
 # Button
 button = Button(window, text="Reset the skill", command=click)
@@ -75,8 +88,7 @@ button.pack()
 
 #label
 label= Label(window)
-label.config(text=to_print, font = ("Times New Roman",12))
+label.config(text=to_print, font = ("Times New Roman", 12))
 label.pack()
-
 
 window.mainloop()
