@@ -2,8 +2,6 @@
 
 A modern desktop application for generating random piano practice exercises to help pianists diversify their practice routine.
 
-![Piano Practice Generator](https://github.com/they3ll0w/piano-practice-app/raw/master/screenshot.png)
-
 ## Features
 
 - **Random Exercise Generation**: Automatically generates exercises across various piano skills
